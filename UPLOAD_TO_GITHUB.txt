@@ -1,0 +1,122 @@
+═══════════════════════════════════════════════════════════════
+  HOW TO UPLOAD YOUR PROJECT TO GITHUB - SIMPLE STEPS
+═══════════════════════════════════════════════════════════════
+
+STEP 1: CREATE REPOSITORY ON GITHUB
+────────────────────────────────────────────────────────────────
+1. Go to: https://github.com
+2. Click the "+" button (top-right corner)
+3. Click "New repository"
+4. Repository name: pharmaconnect-frontend
+5. Description: PharmaConnect - Online Pharmacy Consultation Platform
+6. Choose: Public or Private
+7. DO NOT check "Initialize with README"
+8. Click "Create repository"
+
+STEP 2: OPEN TERMINAL IN YOUR PROJECT FOLDER
+────────────────────────────────────────────────────────────────
+Windows: Right-click in project folder → "Open in Terminal"
+Mac: Right-click → "New Terminal at Folder"
+
+STEP 3: RUN THESE COMMANDS (ONE BY ONE)
+────────────────────────────────────────────────────────────────
+
+Command 1: Initialize Git
+──────────────────────────
+git init
+
+Command 2: Add all files
+──────────────────────────
+git add .
+
+Command 3: Create first commit
+──────────────────────────
+git commit -m "Initial commit: PharmaConnect frontend"
+
+Command 4: Connect to GitHub
+──────────────────────────
+⚠️ REPLACE "YOUR_USERNAME" and "YOUR_REPO_NAME" with your actual values!
+
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+
+Example:
+git remote add origin https://github.com/johnsmith/pharmaconnect-frontend.git
+
+Command 5: Set main branch
+──────────────────────────
+git branch -M main
+
+Command 6: Upload to GitHub
+──────────────────────────
+git push -u origin main
+
+If asked for username/password:
+- Username: Your GitHub username
+- Password: Use Personal Access Token (see below)
+
+═══════════════════════════════════════════════════════════════
+  CREATING PERSONAL ACCESS TOKEN (IF NEEDED)
+═══════════════════════════════════════════════════════════════
+
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token" → "Generate new token (classic)"
+3. Name: "PharmaConnect Development"
+4. Check: "repo" (full control)
+5. Click "Generate token"
+6. COPY THE TOKEN (you won't see it again!)
+7. Use this token as your password when pushing
+
+═══════════════════════════════════════════════════════════════
+  ALTERNATIVE: USE GITHUB DESKTOP (EASIER!)
+═══════════════════════════════════════════════════════════════
+
+1. Download: https://desktop.github.com/
+2. Install and sign in
+3. Click "Add" → "Add Existing Repository"
+4. Select your project folder
+5. Click "Publish repository"
+6. Done! ✅
+
+═══════════════════════════════════════════════════════════════
+  VERIFY IT WORKED
+═══════════════════════════════════════════════════════════════
+
+1. Go to: https://github.com/YOUR_USERNAME/YOUR_REPO_NAME
+2. Refresh the page
+3. You should see all your files! 🎉
+
+═══════════════════════════════════════════════════════════════
+  MAKING CHANGES LATER
+═══════════════════════════════════════════════════════════════
+
+After making changes to your code:
+
+git add .
+git commit -m "Description of what you changed"
+git push
+
+═══════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+Problem: "remote origin already exists"
+Solution:
+  git remote remove origin
+  git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+
+Problem: "Authentication failed"
+Solution: Use Personal Access Token instead of password
+
+Problem: "fatal: not a git repository"
+Solution: Run "git init" first
+
+═══════════════════════════════════════════════════════════════
+  NEED MORE HELP?
+═══════════════════════════════════════════════════════════════
+
+Read the detailed guide: GITHUB_SETUP.md
+
+Or use GitHub Desktop - it's much easier!
+Download: https://desktop.github.com/
+
+═══════════════════════════════════════════════════════════════

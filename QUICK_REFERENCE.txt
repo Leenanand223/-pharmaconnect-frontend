@@ -1,0 +1,163 @@
+╔══════════════════════════════════════════════════════════════╗
+║           PHARMACONNECT - QUICK REFERENCE                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+✅ STATUS: WORKING!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  START THE APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Command:
+  npm start
+
+URL:
+  http://localhost:5173
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ENVIRONMENT VARIABLES (Vite)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+File: .env
+
+VITE_API_URL=http://localhost:5000/api
+VITE_SOCKET_URL=http://localhost:5000
+
+⚠️ IMPORTANT: Must use VITE_ prefix (not REACT_APP_)
+⚠️ Must restart server after changing .env
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TEST ACCOUNTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Patient:
+  Email: rahul@example.com
+  Password: password123
+
+Pharmacist:
+  Email: priya@example.com
+  Password: password123
+
+Admin:
+  Email: admin@example.com
+  Password: password123
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  COMMON COMMANDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Start development server:
+  npm start
+  or
+  npm run dev
+
+Build for production:
+  npm run build
+
+Preview production build:
+  npm run preview
+
+Install dependencies:
+  npm install
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Blank page?
+  1. Press F12 → Check Console for errors
+  2. Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+  3. Restart server: Ctrl+C then npm start
+
+Port already in use?
+  Server will automatically use next available port (5174, 5175, etc.)
+
+Changes not showing?
+  1. Stop server (Ctrl+C)
+  2. Start again: npm start
+  3. Hard refresh browser
+
+Backend not connecting?
+  1. Check backend is running on port 5000
+  2. Check .env has correct VITE_API_URL
+  3. Restart frontend after changing .env
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PROJECT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+src/
+  ├── App.jsx              Main application
+  ├── main.jsx             Entry point
+  ├── config.js            Configuration
+  ├── components/          React components
+  └── services/            API services
+
+.env                       Environment variables (not in git)
+.env.example               Environment template
+package.json               Dependencies
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  HELPFUL DOCUMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL_FIX.md              Complete fix documentation
+QUICKSTART.md             Getting started guide
+TROUBLESHOOTING.md        Common issues & solutions
+GITHUB_SETUP.md           Upload to GitHub
+DEPLOYMENT.md             Deploy to production
+START_HERE.md             Quick start guide
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  KEY DIFFERENCES: VITE vs CREATE REACT APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This project uses VITE (not Create React App)
+
+Environment Variables:
+  ❌ process.env.REACT_APP_*
+  ✅ import.meta.env.VITE_*
+
+Env File Prefix:
+  ❌ REACT_APP_
+  ✅ VITE_
+
+Default Port:
+  ❌ 3000
+  ✅ 5173
+
+Start Command:
+  Both work: npm start or npm run dev
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Vercel/Netlify:
+  1. Set env vars in dashboard:
+     VITE_API_URL=https://your-backend.com/api
+     VITE_SOCKET_URL=https://your-backend.com
+  
+  2. Build command: npm run build
+  3. Output directory: dist
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Issue? Check browser console (F12) first!
+Most errors show exactly what's wrong.
+
+Still stuck? Check these files:
+  - FINAL_FIX.md (complete solution)
+  - TROUBLESHOOTING.md (common issues)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Status: WORKING
+🌐 URL: http://localhost:5173
+📝 Last Updated: Just now!
+
+🎉 Enjoy your PharmaConnect app!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
