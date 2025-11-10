@@ -76,6 +76,68 @@ const dummyData = {
       phone: '+91-98765-43212'
     }
   },
+  pendingPharmacists: [
+    {
+      id: 1,
+      name: 'Dr. Amit Kumar',
+      email: 'amit.kumar@email.com',
+      phone: '+91-98765-11111',
+      licenseNumber: 'PCI-67890',
+      licenseState: 'Maharashtra',
+      licenseExpiry: '2026-12-31',
+      yearsExperience: 8,
+      specialization: 'Clinical Pharmacy',
+      currentEmployer: 'Apollo Pharmacy',
+      education: 'PharmD, Mumbai University',
+      appliedDate: '2025-11-05',
+      status: 'pending',
+      documents: {
+        license: 'license_amit_kumar.pdf',
+        id: 'id_amit_kumar.pdf',
+        degree: 'degree_amit_kumar.pdf'
+      }
+    },
+    {
+      id: 2,
+      name: 'Dr. Sneha Patel',
+      email: 'sneha.patel@email.com',
+      phone: '+91-98765-22222',
+      licenseNumber: 'PCI-54321',
+      licenseState: 'Gujarat',
+      licenseExpiry: '2027-06-30',
+      yearsExperience: 5,
+      specialization: 'Retail Pharmacy',
+      currentEmployer: 'MedPlus',
+      education: 'B.Pharm, Gujarat University',
+      appliedDate: '2025-11-07',
+      status: 'pending',
+      documents: {
+        license: 'license_sneha_patel.pdf',
+        id: 'id_sneha_patel.pdf',
+        degree: 'degree_sneha_patel.pdf'
+      }
+    },
+    {
+      id: 3,
+      name: 'Dr. Rajesh Verma',
+      email: 'rajesh.verma@email.com',
+      phone: '+91-98765-33333',
+      licenseNumber: 'PCI-98765',
+      licenseState: 'Delhi',
+      licenseExpiry: '2026-03-31',
+      yearsExperience: 12,
+      specialization: 'Hospital Pharmacy',
+      currentEmployer: 'AIIMS Delhi',
+      education: 'PharmD, Delhi University',
+      appliedDate: '2025-11-08',
+      status: 'pending',
+      documents: {
+        license: 'license_rajesh_verma.pdf',
+        id: 'id_rajesh_verma.pdf',
+        degree: 'degree_rajesh_verma.pdf'
+      }
+    }
+  ],
   appointments: [
     { id: 1, patientName: 'Rahul Sharma', pharmacistName: 'Dr. Priya Sharma', date: 'Nov 8, 2025', time: '10:30 AM', status: 'pending', type: 'Medication consultation', schedulingMode: 'immediate' },
     { id: 2, patientName: 'Anita Singh', pharmacistName: 'Dr. Priya Sharma', date: '2025-11-10', time: '2:00 PM', status: 'pending', type: 'Side effects concern', schedulingMode: 'scheduled' },
@@ -2953,8 +3015,346 @@ const PharmacistSchedule = ({ navigate }) => {
   );
 };
 
+// Pharmacist Verification Component
+const PharmacistVerification = ({ navigate, pendingPharmacists, onApprove, onReject }) => {
+  const [selectedPharmacist, setSelectedPharmacist] = useState(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [adminNotes, setAdminNotes] = useState('');
+
+  const handleViewDetails = (pharmacist) => {
+    setSelectedPharmacist(pharmacist);
+    setShowDetailsModal(true);
+    setAdminNotes('');
+  };
+
+  const handleApprove = () => {
+    if (selectedPharmacist) {
+      onApprove(selectedPharmacist.id);
+      setShowDetailsModal(false);
+      setSelectedPharmacist(null);
+    }
+  };
+
+  const handleReject = () => {
+    if (selectedPharmacist && adminNotes.trim()) {
+      onReject(selectedPharmacist.id, adminNotes);
+      setShowDetailsModal(false);
+      setSelectedPharmacist(null);
+      setAdminNotes('');
+    } else {
+      alert('Please provide a reason for rejection');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="px-4 py-6 sm:px-0">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Pharmacist Verification</h1>
+              <p className="text-gray-600 mt-1">Review and approve pharmacist applications</p>
+            </div>
+            <button 
+              onClick={() => navigate('admin-dashboard')}
+              className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span>Back to Dashboard</span>
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-orange-100 rounded-lg">
+                  <Clock className="h-6 w-6 text-orange-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm text-gray-600">Pending Review</p>
+                  <p className="text-2xl font-bold text-gray-900">{pendingPharmacists.length}</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-green-100 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm text-gray-600">Approved This Month</p>
+                  <p className="text-2xl font-bold text-gray-900">12</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="p-3 bg-red-100 rounded-lg">
+                  <X className="h-6 w-6 text-red-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm text-gray-600">Rejected This Month</p>
+                  <p className="text-2xl font-bold text-gray-900">3</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pending Applications */}
+          <div className="bg-white rounded-lg shadow">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-xl font-semibold text-gray-900">Pending Applications</h2>
+            </div>
+            <div className="divide-y divide-gray-200">
+              {pendingPharmacists.length === 0 ? (
+                <div className="px-6 py-12 text-center">
+                  <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">No pending applications</p>
+                </div>
+              ) : (
+                pendingPharmacists.map(pharmacist => (
+                  <div key={pharmacist.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                          {pharmacist.name.split(' ')[1]?.charAt(0) || pharmacist.name.charAt(0)}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-1">
+                            <h3 className="text-lg font-semibold text-gray-900">{pharmacist.name}</h3>
+                            <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full">
+                              Pending Review
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-600">
+                            <div className="flex items-center space-x-2">
+                              <Mail className="h-4 w-4 text-gray-400" />
+                              <span>{pharmacist.email}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Phone className="h-4 w-4 text-gray-400" />
+                              <span>{pharmacist.phone}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <ShieldCheck className="h-4 w-4 text-gray-400" />
+                              <span>License: {pharmacist.licenseNumber}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <MapPin className="h-4 w-4 text-gray-400" />
+                              <span>{pharmacist.licenseState}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Award className="h-4 w-4 text-gray-400" />
+                              <span>{pharmacist.yearsExperience} years experience</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Stethoscope className="h-4 w-4 text-gray-400" />
+                              <span>{pharmacist.specialization}</span>
+                            </div>
+                          </div>
+                          <div className="mt-2 text-xs text-gray-500">
+                            Applied: {pharmacist.appliedDate}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex space-x-2 ml-4">
+                        <button
+                          onClick={() => handleViewDetails(pharmacist)}
+                          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2 text-sm"
+                        >
+                          <Eye className="h-4 w-4" />
+                          <span>Review</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Details Modal */}
+      {showDetailsModal && selectedPharmacist && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-900">Application Review</h2>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Personal Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <User className="h-5 w-5 mr-2 text-blue-600" />
+                  Personal Information
+                </h3>
+                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Full Name</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Email</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.email}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Phone</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.phone}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Applied Date</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.appliedDate}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* License Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <ShieldCheck className="h-5 w-5 mr-2 text-green-600" />
+                  License Information
+                </h3>
+                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">License Number</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.licenseNumber}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">License State</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.licenseState}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Expiry Date</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.licenseExpiry}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Document</p>
+                    <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center space-x-1">
+                      <Download className="h-4 w-4" />
+                      <span>View License</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Professional Background */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Stethoscope className="h-5 w-5 mr-2 text-purple-600" />
+                  Professional Background
+                </h3>
+                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Years of Experience</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.yearsExperience} years</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Specialization</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.specialization}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Current Employer</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.currentEmployer}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Education</p>
+                    <p className="font-medium text-gray-900">{selectedPharmacist.education}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Documents */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <FileText className="h-5 w-5 mr-2 text-orange-600" />
+                  Submitted Documents
+                </h3>
+                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FileText className="h-5 w-5 text-gray-400" />
+                      <span className="text-gray-900">Pharmacy License</span>
+                    </div>
+                    <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center space-x-1">
+                      <Eye className="h-4 w-4" />
+                      <span>View</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FileText className="h-5 w-5 text-gray-400" />
+                      <span className="text-gray-900">Government ID</span>
+                    </div>
+                    <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center space-x-1">
+                      <Eye className="h-4 w-4" />
+                      <span>View</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FileText className="h-5 w-5 text-gray-400" />
+                      <span className="text-gray-900">Degree Certificate</span>
+                    </div>
+                    <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center space-x-1">
+                      <Eye className="h-4 w-4" />
+                      <span>View</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Admin Notes */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Clipboard className="h-5 w-5 mr-2 text-gray-600" />
+                  Admin Notes
+                </h3>
+                <textarea
+                  value={adminNotes}
+                  onChange={(e) => setAdminNotes(e.target.value)}
+                  placeholder="Add notes about this application (required for rejection)..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  rows="4"
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex space-x-4 pt-4 border-t border-gray-200">
+                <button
+                  onClick={handleApprove}
+                  className="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2 font-medium"
+                >
+                  <CheckCircle className="h-5 w-5" />
+                  <span>Approve Application</span>
+                </button>
+                <button
+                  onClick={handleReject}
+                  className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center space-x-2 font-medium"
+                >
+                  <X className="h-5 w-5" />
+                  <span>Reject Application</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 // Admin Dashboard Component
-const AdminDashboard = ({ navigate }) => {
+const AdminDashboard = ({ navigate, pendingPharmacistsCount }) => {
   const [selectedTimeRange, setSelectedTimeRange] = useState('7days');
   const [showUserModal, setShowUserModal] = useState(false);
 
@@ -3041,6 +3441,38 @@ const AdminDashboard = ({ navigate }) => {
                     </dl>
                   </div>
                 </div>
+              </div>
+            </div>
+            
+            <div 
+              onClick={() => navigate('pharmacist-verification')}
+              className="bg-gradient-to-br from-orange-50 to-orange-100 overflow-hidden shadow rounded-lg cursor-pointer hover:shadow-lg transition-all border-2 border-orange-200 hover:border-orange-400"
+            >
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <ShieldCheck className="h-6 w-6 text-orange-600" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-orange-700 truncate">Pending Pharmacists</dt>
+                      <dd className="flex items-center">
+                        <span className="text-lg font-medium text-orange-900">{pendingPharmacistsCount}</span>
+                        {pendingPharmacistsCount > 0 && (
+                          <span className="ml-2 px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded-full animate-pulse">
+                            NEW
+                          </span>
+                        )}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-orange-200 px-5 py-3">
+                <button className="text-orange-800 hover:text-orange-900 font-medium text-sm flex items-center space-x-1">
+                  <Eye className="h-4 w-4" />
+                  <span>Review Applications</span>
+                </button>
               </div>
             </div>
             
@@ -5085,6 +5517,9 @@ const App = () => {
     { id: 5, patientName: 'Vikram Patel', pharmacistName: 'Dr. Rajesh Kumar', date: '2025-11-05', time: '11:00 AM', status: 'completed', type: 'General consultation', schedulingMode: 'scheduled' }
   ]);
 
+  // Pending pharmacists state management
+  const [pendingPharmacists, setPendingPharmacists] = useState(dummyData.pendingPharmacists);
+
   // Load user from storage on mount
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -5130,6 +5565,18 @@ const App = () => {
     };
     
     setAppointments(prevAppointments => [...prevAppointments, newAppointment]);
+  };
+
+  // Handle pharmacist approval
+  const handleApprovePharmacist = (pharmacistId) => {
+    setPendingPharmacists(prev => prev.filter(p => p.id !== pharmacistId));
+    alert('✅ Pharmacist approved! They can now login and start accepting consultations.');
+  };
+
+  // Handle pharmacist rejection
+  const handleRejectPharmacist = (pharmacistId, reason) => {
+    setPendingPharmacists(prev => prev.filter(p => p.id !== pharmacistId));
+    alert(`❌ Pharmacist application rejected.\nReason: ${reason}\n\nThey will be notified via email.`);
   };
 
   const navigate = (page) => {
@@ -5184,7 +5631,15 @@ const App = () => {
         {currentPage === 'patient-dashboard' && <PatientDashboard navigate={navigate} appointments={appointments} currentUser={currentUser} />}
         {currentPage === 'pharmacist-dashboard' && <PharmacistDashboard navigate={navigate} appointments={appointments} onAcceptAppointment={handleAcceptAppointment} onDeclineAppointment={handleDeclineAppointment} currentUser={currentUser} />}
         {currentPage === 'pharmacist-schedule' && <PharmacistSchedule navigate={navigate} />}
-        {currentPage === 'admin-dashboard' && <AdminDashboard navigate={navigate} />}
+        {currentPage === 'admin-dashboard' && <AdminDashboard navigate={navigate} pendingPharmacistsCount={pendingPharmacists.length} />}
+        {currentPage === 'pharmacist-verification' && (
+          <PharmacistVerification 
+            navigate={navigate} 
+            pendingPharmacists={pendingPharmacists}
+            onApprove={handleApprovePharmacist}
+            onReject={handleRejectPharmacist}
+          />
+        )}
         {currentPage === 'appointments' && (
           <AppointmentBooking
             navigate={navigate}
