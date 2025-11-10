@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Chatbot from "./components/chatbot";
+import VideoCall from "./components/VideoCall";
 import authService from './services/authService';
 import dataService from './services/dataService';
 import apiService from './services/api';
@@ -5203,7 +5204,21 @@ const App = () => {
             onPaymentComplete={() => navigate('patient-dashboard')}
           />
         )}
-        {currentPage === 'video-consultation' && <VideoConsultation navigate={navigate} currentUser={currentUser} />}
+        {currentPage === 'video-consultation' && (
+          <VideoCall 
+            appointmentId="12345" 
+            userName={currentUser?.name || 'User'}
+            onEndCall={() => {
+              if (currentUser?.role === 'patient') {
+                navigate('patient-dashboard');
+              } else if (currentUser?.role === 'pharmacist') {
+                navigate('pharmacist-dashboard');
+              } else {
+                navigate('home');
+              }
+            }}
+          />
+        )}
         {currentPage === 'chat-pharmacist' && <ChatWithPharmacist navigate={navigate} />}
         {currentPage === 'request-prescription' && <RequestPrescription navigate={navigate} />}
         {currentPage === 'prescriptions' && <PrescriptionsPage navigate={navigate} />}
