@@ -59,14 +59,14 @@ const dummyData = {
       phone: '+91-98765-43210',
       address: 'Sector 15, Chandigarh, Punjab'
     },
-    pharmacist: {
+    therapist: {
       id: 2,
       name: 'Dr. Priya Sharma',
       email: 'priya@example.com',
-      role: 'pharmacist',
+      role: 'therapist',
       phone: '+91-98765-43211',
-      license: 'PCI-12345',
-      specialization: 'Clinical Pharmacy'
+      license: 'TCT-12345',
+      specialization: 'Cognitive Behavioral Therapy'
     },
     admin: {
       id: 3,
@@ -76,19 +76,19 @@ const dummyData = {
       phone: '+91-98765-43212'
     }
   },
-  pendingPharmacists: [
+  pendingTherapists: [
     {
       id: 1,
       name: 'Dr. Amit Kumar',
       email: 'amit.kumar@email.com',
       phone: '+91-98765-11111',
-      licenseNumber: 'PCI-67890',
+      licenseNumber: 'TCT-67890',
       licenseState: 'Maharashtra',
       licenseExpiry: '2026-12-31',
       yearsExperience: 8,
-      specialization: 'Clinical Pharmacy',
-      currentEmployer: 'Apollo Pharmacy',
-      education: 'PharmD, Mumbai University',
+      specialization: 'Clinical Therapy',
+      currentEmployer: 'Apollo Wellness Center',
+      education: 'Psychology, Mumbai University',
       appliedDate: '2025-11-05',
       status: 'pending',
       documents: {
@@ -102,13 +102,13 @@ const dummyData = {
       name: 'Dr. Sneha Patel',
       email: 'sneha.patel@email.com',
       phone: '+91-98765-22222',
-      licenseNumber: 'PCI-54321',
+      licenseNumber: 'TCT-54321',
       licenseState: 'Gujarat',
       licenseExpiry: '2027-06-30',
       yearsExperience: 5,
-      specialization: 'Retail Pharmacy',
-      currentEmployer: 'MedPlus',
-      education: 'B.Pharm, Gujarat University',
+      specialization: 'Cognitive Behavioral Therapy',
+      currentEmployer: 'Thrive Therapy',
+      education: 'M.A. Psychology, Gujarat University',
       appliedDate: '2025-11-07',
       status: 'pending',
       documents: {
@@ -122,13 +122,13 @@ const dummyData = {
       name: 'Dr. Rajesh Verma',
       email: 'rajesh.verma@email.com',
       phone: '+91-98765-33333',
-      licenseNumber: 'PCI-98765',
+      licenseNumber: 'TCT-98765',
       licenseState: 'Delhi',
       licenseExpiry: '2026-03-31',
       yearsExperience: 12,
-      specialization: 'Hospital Pharmacy',
+      specialization: 'Family Therapy',
       currentEmployer: 'AIIMS Delhi',
-      education: 'PharmD, Delhi University',
+      education: 'Psychology, Delhi University',
       appliedDate: '2025-11-08',
       status: 'pending',
       documents: {
@@ -139,11 +139,11 @@ const dummyData = {
     }
   ],
   appointments: [
-    { id: 1, patientName: 'Rahul Sharma', pharmacistName: 'Dr. Priya Sharma', date: 'Nov 8, 2025', time: '10:30 AM', status: 'pending', type: 'Medication consultation', schedulingMode: 'immediate' },
-    { id: 2, patientName: 'Anita Singh', pharmacistName: 'Dr. Priya Sharma', date: '2025-11-10', time: '2:00 PM', status: 'pending', type: 'Side effects concern', schedulingMode: 'scheduled' },
-    { id: 3, patientName: 'Sneha Agarwal', pharmacistName: 'Dr. Priya Sharma', date: 'Nov 8, 2025', time: '11:15 AM', status: 'pending', type: 'General consultation', schedulingMode: 'immediate' },
-    { id: 4, patientName: 'Vikram Patel', pharmacistName: 'Dr. Priya Sharma', date: '2025-11-09', time: '3:00 PM', status: 'scheduled', type: 'Follow-up', schedulingMode: 'scheduled' },
-    { id: 5, patientName: 'Priya Gupta', pharmacistName: 'Dr. Rajesh Kumar', date: '2025-11-05', time: '11:00 AM', status: 'completed', type: 'Medication review', schedulingMode: 'scheduled' }
+    { id: 1, patientName: 'Rahul Sharma', therapistName: 'Dr. Priya Sharma', date: 'Nov 8, 2025', time: '10:30 AM', status: 'pending', type: 'Therapy consultation', schedulingMode: 'immediate' },
+    { id: 2, patientName: 'Anita Singh', therapistName: 'Dr. Priya Sharma', date: '2025-11-10', time: '2:00 PM', status: 'pending', type: 'Anxiety follow-up', schedulingMode: 'scheduled' },
+    { id: 3, patientName: 'Sneha Agarwal', therapistName: 'Dr. Priya Sharma', date: 'Nov 8, 2025', time: '11:15 AM', status: 'pending', type: 'General therapy session', schedulingMode: 'immediate' },
+    { id: 4, patientName: 'Vikram Patel', therapistName: 'Dr. Priya Sharma', date: '2025-11-09', time: '3:00 PM', status: 'scheduled', type: 'Follow-up session', schedulingMode: 'scheduled' },
+    { id: 5, patientName: 'Priya Gupta', therapistName: 'Dr. Rajesh Kumar', date: '2025-11-05', time: '11:00 AM', status: 'completed', type: 'Wellness check-in', schedulingMode: 'scheduled' }
   ],
   prescriptions: [
     { id: 1, patientName: 'Rahul Sharma', medication: 'Amoxicillin 500mg', dosage: '3 times daily', date: '2025-10-25', status: 'active' },
@@ -151,14 +151,14 @@ const dummyData = {
     { id: 3, patientName: 'Vikram Patel', medication: 'Metformin 850mg', dosage: '2 times daily', date: '2025-10-15', status: 'completed' }
   ],
   testimonials: [
-    { id: 1, name: 'Priya Gupta', text: 'PharmaConnect made it so easy to get expert advice on my medications. The pharmacists are knowledgeable and caring. Great service!', rating: 5 },
-    { id: 2, name: 'Arjun Mehta', text: 'I love being able to consult with pharmacists from home. The video quality is excellent and the service is very professional.', rating: 5 },
-    { id: 3, name: 'Sneha Agarwal', text: 'As a busy working mother, PharmaConnect saves me so much time. Quick consultations and reliable prescription guidance.', rating: 5 }
+    { id: 1, name: 'Priya Gupta', text: 'TherapyConnect made it so easy to get expert guidance on my mental health. The therapists are knowledgeable and caring. Great service!', rating: 5 },
+    { id: 2, name: 'Arjun Mehta', text: 'I love being able to consult with therapists from home. The video quality is excellent and the service is very professional.', rating: 5 },
+    { id: 3, name: 'Sneha Agarwal', text: 'As a busy working mother, TherapyConnect saves me so much time. Quick consultations and reliable support.', rating: 5 }
   ],
   chatMessages: [
-    { id: 1, sender: 'Dr. Priya Sharma', message: 'Hello! How are you feeling today?', time: '10:05 AM', isPharmacist: true },
-    { id: 2, sender: 'Rahul Sharma', message: 'Hi Dr. Priya! I have some questions about my medication.', time: '10:06 AM', isPharmacist: false },
-    { id: 3, sender: 'Dr. Priya Sharma', message: 'Of course! What would you like to know?', time: '10:07 AM', isPharmacist: true }
+    { id: 1, sender: 'Dr. Priya Sharma', message: 'Hello! How are you feeling today?', time: '10:05 AM', isTherapist: true },
+    { id: 2, sender: 'Rahul Sharma', message: 'Hi Dr. Priya! I have some questions about my therapy goals.', time: '10:06 AM', isTherapist: false },
+    { id: 3, sender: 'Dr. Priya Sharma', message: 'Of course! What would you like to discuss?', time: '10:07 AM', isTherapist: true }
   ],
   timeSlots: [
     { time: '9:00 AM', available: true },
@@ -169,6 +169,9 @@ const dummyData = {
     { time: '4:00 PM', available: true }
   ]
 };
+// Backwards-compatibility aliases (some parts of the app still use "pharmacists")
+dummyData.pendingPharmacists = dummyData.pendingPharmacists || dummyData.pendingTherapists;
+
 
 // Navigation Component
 const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMenuOpen, currentPage }) => {
@@ -178,7 +181,7 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
     if (!currentUser) return 'home';
     switch (currentUser.role) {
       case 'patient': return 'patient-dashboard';
-      case 'pharmacist': return 'pharmacist-dashboard';
+      case 'therapist': return 'therapist-dashboard';
       case 'admin': return 'admin-dashboard';
       default: return 'home';
     }
@@ -187,7 +190,7 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
   const getUserRoleColor = () => {
     switch (currentUser?.role) {
       case 'patient': return 'text-green-600';
-      case 'pharmacist': return 'text-purple-600';
+      case 'therapist': return 'text-purple-600';
       case 'admin': return 'text-red-600';
       default: return 'text-blue-600';
     }
@@ -206,7 +209,7 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
               className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
             >
               <HeartHandshake className="h-8 w-8" />
-              <span className="text-xl font-bold">PharmaConnect</span>
+              <span className="text-xl font-bold">TherapyConnect</span>
             </button>
           </div>
 
@@ -275,7 +278,7 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
                       <span>Book Consultation</span>
                     </button>
                     <button 
-                      onClick={() => navigate('chat-pharmacist')} 
+                      onClick={() => navigate('chat-therapist')} 
                       className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-colors font-medium"
                     >
                       <MessageCircle className="h-4 w-4" />
@@ -284,10 +287,10 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
                   </>
                 )}
 
-                {currentUser.role === 'pharmacist' && (
+                {currentUser.role === 'therapist' && (
                   <>
                     <button 
-                      onClick={() => navigate('pharmacist-schedule')} 
+                      onClick={() => navigate('therapist-schedule')} 
                       className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors font-medium"
                     >
                       <Calendar className="h-4 w-4" />
@@ -479,13 +482,13 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
                       </button>
                       <button 
                         onClick={() => {
-                          navigate('chat-pharmacist');
+                          navigate('chat-therapist');
                           setIsMobileMenuOpen(false);
                         }} 
                         className="text-left px-4 py-2 text-gray-700 hover:text-green-600 transition-colors font-medium flex items-center space-x-2"
                       >
                         <MessageCircle className="h-4 w-4" />
-                        <span>Chat with Pharmacist</span>
+                        <span>Chat with Therapist</span>
                       </button>
                       <button 
                         onClick={() => {
@@ -500,10 +503,10 @@ const Navbar = ({ currentUser, navigate, logout, isMobileMenuOpen, setIsMobileMe
                     </>
                   )}
 
-                  {currentUser.role === 'pharmacist' && (
+                  {currentUser.role === 'therapist' && (
                     <button 
                       onClick={() => {
-                        navigate('pharmacist-schedule');
+                        navigate('therapist-schedule');
                         setIsMobileMenuOpen(false);
                       }} 
                       className="text-left px-4 py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium flex items-center space-x-2"
@@ -557,10 +560,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <HeartHandshake className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">PharmaConnect</span>
+              <span className="text-xl font-bold">TherapyConnect</span>
             </div>
             <p className="text-gray-400">
-              Connecting patients with licensed pharmacists for expert healthcare guidance.
+              Connecting patients with licensed therapists for expert mental health guidance.
             </p>
           </div>
           
@@ -604,7 +607,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 PharmaConnect. All rights reserved.</p>
+          <p>&copy; 2025 TherapyConnect. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -640,10 +643,10 @@ const HomePage = ({ navigate, currentUser }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Connect with Pharmacists<br />Anytime, Anywhere
+              Connect with Therapists<br />Anytime, Anywhere
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Get expert pharmaceutical guidance through secure video consultations
+              Get expert therapy guidance through secure video consultations
             </p>
 
             {/* Guest CTA */}
@@ -687,12 +690,12 @@ const HomePage = ({ navigate, currentUser }) => {
                   </>
                 )}
 
-                {currentUser.role === 'pharmacist' && (
+                {currentUser.role === 'therapist' && (
                   <button
-                    onClick={() => navigate('pharmacist-dashboard')}
+                    onClick={() => navigate('therapist-dashboard')}
                     className="bg-purple-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition-colors transform hover:scale-105"
                   >
-                    Pharmacist Dashboard
+                    Therapist Dashboard
                   </button>
                 )}
 
@@ -718,12 +721,12 @@ const HomePage = ({ navigate, currentUser }) => {
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 text-center">
                   <Clock className="h-12 w-12 text-white mx-auto mb-3" />
                   <h3 className="text-lg font-semibold text-white mb-2">24/7 Available</h3>
-                  <p className="text-blue-100 text-sm">Connect with pharmacists anytime</p>
+                  <p className="text-blue-100 text-sm">Connect with therapists anytime</p>
                 </div>
                 <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 text-center">
                   <Award className="h-12 w-12 text-white mx-auto mb-3" />
                   <h3 className="text-lg font-semibold text-white mb-2">Licensed Experts</h3>
-                  <p className="text-blue-100 text-sm">Certified pharmacists you can trust</p>
+                  <p className="text-blue-100 text-sm">Certified therapists you can trust</p>
                 </div>
               </div>
             )}
@@ -785,14 +788,14 @@ const HomePage = ({ navigate, currentUser }) => {
                 </>
               )}
               
-              {currentUser.role === 'pharmacist' && (
+              {currentUser.role === 'therapist' && (
                 <>
                   <div className="bg-white rounded-lg shadow p-6 text-center">
                     <Users className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                    <h3 className="text-lg font-semibold mb-2">Today's Patients</h3>
+                    <h3 className="text-lg font-semibold mb-2">Today's Clients</h3>
                     <p className="text-2xl font-bold text-blue-600">12</p>
                     <button 
-                      onClick={() => navigate('pharmacist-dashboard')}
+                      onClick={() => navigate('therapist-dashboard')}
                       className="mt-3 text-blue-600 hover:text-blue-700 font-medium text-sm"
                     >
                       View Schedule →
@@ -804,7 +807,7 @@ const HomePage = ({ navigate, currentUser }) => {
                     <h3 className="text-lg font-semibold mb-2">New Requests</h3>
                     <p className="text-2xl font-bold text-green-600">4</p>
                     <button 
-                      onClick={() => navigate('pharmacist-dashboard')}
+                      onClick={() => navigate('therapist-dashboard')}
                       className="mt-3 text-green-600 hover:text-green-700 font-medium text-sm"
                     >
                       Review →
@@ -815,7 +818,7 @@ const HomePage = ({ navigate, currentUser }) => {
                     <Calendar className="h-8 w-8 text-purple-600 mx-auto mb-3" />
                     <h3 className="text-lg font-semibold mb-2">Manage</h3>
                     <button 
-                      onClick={() => navigate('pharmacist-schedule')}
+                      onClick={() => navigate('therapist-schedule')}
                       className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors w-full"
                     >
                       My Schedule
@@ -834,10 +837,10 @@ const HomePage = ({ navigate, currentUser }) => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                How PharmaConnect Works
+                How TherapyConnect Works
               </h2>
               <p className="text-xl text-gray-600 mb-8">
-                Get expert pharmaceutical care in 3 simple steps
+                Get expert therapy care in 3 simple steps
               </p>
             </div>
             
@@ -851,7 +854,7 @@ const HomePage = ({ navigate, currentUser }) => {
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Create Your Account</h3>
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  Quick 2-minute registration with secure verification. Choose between patient or pharmacist profiles.
+                  Quick 2-minute registration with secure verification. Choose between patient or therapist profiles.
                 </p>
               </div>
               
@@ -885,7 +888,7 @@ const HomePage = ({ navigate, currentUser }) => {
             {/* Key Features Grid */}
             <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
               <h3 className="text-2xl font-bold text-center text-gray-900 mb-12">
-                Why Choose PharmaConnect?
+                Why Choose TherapyConnect?
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="flex items-start space-x-4">
@@ -904,7 +907,7 @@ const HomePage = ({ navigate, currentUser }) => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">24/7 Availability</h4>
-                    <p className="text-gray-600">Access pharmaceutical expertise anytime, anywhere</p>
+                    <p className="text-gray-600">Access therapy expertise anytime, anywhere</p>
                   </div>
                 </div>
                 
@@ -914,7 +917,7 @@ const HomePage = ({ navigate, currentUser }) => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">Licensed Experts</h4>
-                    <p className="text-gray-600">Verified pharmacists with state licenses and certifications</p>
+                    <p className="text-gray-600">Verified therapists with state licenses and certifications</p>
                   </div>
                 </div>
                 
@@ -978,7 +981,7 @@ const HomePage = ({ navigate, currentUser }) => {
                 <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-4 group-hover:bg-opacity-30 transition-all">
                   <Stethoscope className="h-8 w-8 mx-auto mb-2 text-white" />
                   <div className="text-4xl font-bold mb-2">500+</div>
-                  <div className="text-blue-100">Licensed Pharmacists</div>
+                  <div className="text-blue-100">Licensed Therapists</div>
                 </div>
               </div>
               <div className="text-center group">
@@ -1011,14 +1014,14 @@ const HomePage = ({ navigate, currentUser }) => {
                   <Award className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Licensed Professionals</h3>
-                <p className="text-blue-100">All pharmacists are verified and licensed in their respective states</p>
+                <p className="text-blue-100">All therapists are verified and licensed in their respective states</p>
               </div>
               <div className="text-center">
                 <div className="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
-                <p className="text-blue-100">Round-the-clock access to pharmaceutical expertise when you need it</p>
+                <p className="text-blue-100">Round-the-clock access to therapy expertise when you need it</p>
               </div>
             </div>
           </div>
@@ -1171,7 +1174,7 @@ const LoginPage = ({ navigate, login }) => {
           <div className="text-xs text-gray-500 text-center mt-4">
             <p>Test accounts:</p>
             <p>Patient: rahul@example.com / password123</p>
-            <p>Pharmacist: priya@example.com / password123</p>
+            <p>Therapist: priya@example.com / password123</p>
             <p>Admin: admin@example.com / password123</p>
           </div>
         </form>
@@ -1198,6 +1201,10 @@ const LoginPage = ({ navigate, login }) => {
     emergencyPhone: '', medications: '', allergies: '', conditions: '', agreeHipaa: false
   });
 
+  // Compatibility flag: many legacy conditionals still reference `isPharmacist`.
+  // Map it to the new therapist role so UI logic continues to work during the rename.
+  const isPharmacist = selectedRole === 'therapist';
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
@@ -1220,18 +1227,16 @@ const LoginPage = ({ navigate, login }) => {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-6">
               <Pill className="w-16 h-16 text-blue-600 mr-4" />
-              <h1 className="text-5xl font-bold text-gray-900">Pharma Connect</h1>
+              <h1 className="text-5xl font-bold text-gray-900">Therapy Connect</h1>
             </div>
-            <p className="text-xl text-gray-600">Join our telepharmacy platform</p>
-          </div>
-
+            <p className="text-xl text-gray-600">Join our teletherapy platform</p>
           <div className="grid md:grid-cols-2 gap-8">
-            <div onClick={() => handleRoleSelect('pharmacist')} className="bg-white rounded-2xl shadow-xl p-8 cursor-pointer transform transition-all hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-blue-500">
+            <div onClick={() => handleRoleSelect('therapist')} className="bg-white rounded-2xl shadow-xl p-8 cursor-pointer transform transition-all hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-blue-500">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Stethoscope className="w-10 h-10 text-blue-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Pharmacist</h2>
-              <p className="text-gray-600 text-center mb-6">Join our network and provide remote pharmaceutical care to patients nationwide</p>
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Therapist</h2>
+              <p className="text-gray-600 text-center mb-6">Join our network and provide remote therapy care to patients nationwide</p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start text-sm text-gray-700">
                   <Video className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -1247,7 +1252,7 @@ const LoginPage = ({ navigate, login }) => {
                 </div>
               </div>
               <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg">
-                Sign Up as Pharmacist
+                Sign Up as Therapist
               </button>
             </div>
 
@@ -1280,53 +1285,52 @@ const LoginPage = ({ navigate, login }) => {
       </div>
     );
   }
-
   if (submitted) {
-  const isPharmacist = selectedRole === 'pharmacist';
+    const isTherapist = selectedRole === 'therapist';
 
-  // ✅ If it's a patient, go directly to login after registration
-  if (!isPharmacist) {
-    navigate('login');
-    return null;
+    // If it's a patient, redirect to login after registration
+    if (!isTherapist) {
+      navigate('login');
+      return null;
+    }
+
+    // Therapists see success message
+    return (
+      <div className={`min-h-screen bg-gradient-to-br ${isTherapist ? 'from-blue-50 via-white to-green-50' : 'from-green-50 via-white to-blue-50'} flex items-center justify-center p-4`}>
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+          <div className={`w-20 h-20 ${isTherapist ? 'bg-blue-100' : 'bg-green-100'} rounded-full flex items-center justify-center mx-auto mb-6`}>
+            <CheckCircle className={`w-12 h-12 ${isTherapist ? 'text-blue-600' : 'text-green-600'}`} />
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Application Submitted!</h2>
+          <p className="text-gray-600 mb-6">Thank you for applying. Our team will review your credentials and contact you within 2–3 business days.</p>
+          <button
+            onClick={() => { setSelectedRole(null); setStep(1); setSubmitted(false); }}
+            className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg font-medium transition-all shadow-lg"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
   }
 
-  // ✅ Pharmacists still see success message
-  return (
-    <div className={`min-h-screen bg-gradient-to-br ${isPharmacist ? 'from-blue-50 via-white to-green-50' : 'from-green-50 via-white to-blue-50'} flex items-center justify-center p-4`}>
-      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-        <div className={`w-20 h-20 ${isPharmacist ? 'bg-blue-100' : 'bg-green-100'} rounded-full flex items-center justify-center mx-auto mb-6`}>
-          <CheckCircle className={`w-12 h-12 ${isPharmacist ? 'text-blue-600' : 'text-green-600'}`} />
-        </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Application Submitted!</h2>
-        <p className="text-gray-600 mb-6">Thank you for applying. Our team will review your credentials and contact you within 2–3 business days.</p>
-        <button
-          onClick={() => { setSelectedRole(null); setStep(1); setSubmitted(false); }}
-          className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg font-medium transition-all shadow-lg"
-        >
-          Back to Home
-        </button>
-      </div>
-    </div>
-  );
-}
-
-  const isPharmacist = selectedRole === 'pharmacist';
-  const primaryColor = isPharmacist ? 'blue' : 'green';
+  const isTherapist = selectedRole === 'therapist';
+  const primaryColor = isTherapist ? 'blue' : 'green';
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${isPharmacist ? 'from-blue-50 via-white to-green-50' : 'from-green-50 via-white to-blue-50'}`}>
+    <div className={`min-h-screen bg-gradient-to-br ${isTherapist ? 'from-blue-50 via-white to-green-50' : 'from-green-50 via-white to-blue-50'}`}>
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-center mb-8 relative">
           <button onClick={() => setSelectedRole(null)} className="absolute left-0 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium">← Back</button>
           <Pill className={`w-10 h-10 text-${primaryColor}-600 mr-3`} />
-          <h1 className="text-3xl font-bold text-gray-900">TelePharm Connect</h1>
+          <h1 className="text-3xl font-bold text-gray-900">TherapyConnect</h1>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className={`bg-gradient-to-r ${isPharmacist ? 'from-blue-600 to-green-600' : 'from-green-600 to-blue-600'} p-8 text-white`}>
-              <h2 className="text-3xl font-bold mb-2">{isPharmacist ? 'Join Our Pharmacist Network' : 'Start Your Healthcare Journey'}</h2>
-              <p className={isPharmacist ? 'text-blue-100' : 'text-green-100'}>{isPharmacist ? 'Provide remote pharmaceutical care nationwide' : 'Connect with licensed pharmacists anytime, anywhere'}</p>
+            <div className={`bg-gradient-to-r ${isTherapist ? 'from-blue-600 to-green-600' : 'from-green-600 to-blue-600'} p-8 text-white`}>
+              <h2 className="text-3xl font-bold mb-2">{isTherapist ? 'Join Our Therapist Network' : 'Start Your Mental Wellness Journey'}</h2>
+              <p className={isTherapist ? 'text-blue-100' : 'text-green-100'}>{isTherapist ? 'Provide remote therapy care nationwide' : 'Connect with licensed therapists anytime, anywhere'}</p>
             </div>
 
             <div className="flex justify-center py-6 px-8 bg-gray-50 border-b">
@@ -1550,7 +1554,7 @@ const PatientDashboard = ({ navigate, appointments, currentUser }) => {
   const [notifications] = useState([
     { id: 1, type: 'appointment', message: 'Appointment reminder: Tomorrow at 10:00 AM', time: '2 hours ago', read: false },
     { id: 2, type: 'prescription', message: 'New prescription uploaded by Dr. Priya Sharma', time: '1 day ago', read: false },
-    { id: 3, type: 'message', message: 'You have a new message from your pharmacist', time: '2 days ago', read: true }
+    { id: 3, type: 'message', message: 'You have a new message from your therapist', time: '2 days ago', read: true }
   ]);
 
   // Filter appointments for this patient
@@ -1708,7 +1712,7 @@ const PatientDashboard = ({ navigate, appointments, currentUser }) => {
                               <p className="text-xs text-orange-700 mt-1">{appointment.type}</p>
                               <div className="flex items-center mt-2">
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                                  Waiting for pharmacist approval
+                                  Waiting for therapist approval
                                 </span>
                               </div>
                             </div>
@@ -1741,7 +1745,7 @@ const PatientDashboard = ({ navigate, appointments, currentUser }) => {
                               <p className="text-xs text-green-700 mt-1">{appointment.type}</p>
                               <div className="flex items-center mt-2">
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                  ✓ Confirmed by pharmacist
+                                  ✓ Confirmed by therapist
                                 </span>
                               </div>
                             </div>
@@ -1755,7 +1759,7 @@ const PatientDashboard = ({ navigate, appointments, currentUser }) => {
                               <span>Join Call</span>
                             </button>
                             <button 
-                              onClick={() => navigate('chat-pharmacist')}
+                              onClick={() => navigate('chat-therapist')}
                               className="bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700 transition-colors flex items-center space-x-1"
                             >
                               <MessageCircle className="h-3 w-3" />
@@ -2278,7 +2282,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                 )}
               </div>
               <button 
-                onClick={() => navigate('pharmacist-schedule')}
+                onClick={() => navigate('therapist-schedule')}
                 className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
               >
                 <Calendar className="h-4 w-4" />
@@ -2316,7 +2320,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                 </div>
               </div>
               <div className="bg-gray-50 px-5 py-3">
-                <button onClick={() => navigate('pharmacist-schedule')} className="text-blue-600 hover:text-blue-500 font-medium text-sm">
+                <button onClick={() => navigate('therapist-schedule')} className="text-blue-600 hover:text-blue-500 font-medium text-sm">
                   View all patients
                 </button>
               </div>
@@ -2337,7 +2341,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                 </div>
               </div>
               <div className="bg-gray-50 px-5 py-3">
-                <button onClick={() => navigate('pharmacist-schedule')} className="text-green-600 hover:text-green-500 font-medium text-sm">
+                <button onClick={() => navigate('therapist-schedule')} className="text-green-600 hover:text-green-500 font-medium text-sm">
                   View schedule
                 </button>
               </div>
@@ -2392,7 +2396,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Today's Appointments</h3>
                   <button 
-                    onClick={() => navigate('pharmacist-schedule')}
+                    onClick={() => navigate('therapist-schedule')}
                     className="text-blue-600 hover:text-blue-500 font-medium text-sm"
                   >
                     View All
@@ -2430,7 +2434,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                               <span>Start Call</span>
                             </button>
                             <button 
-                              onClick={() => navigate('chat-pharmacist')}
+                              onClick={() => navigate('chat-therapist')}
                               className="bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700 transition-colors flex items-center space-x-1"
                             >
                               <MessageCircle className="h-3 w-3" />
@@ -2617,7 +2621,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
                 {completedAppointments.length > 3 && (
                   <div className="mt-4 text-center">
                     <button 
-                      onClick={() => navigate('pharmacist-schedule')}
+                      onClick={() => navigate('therapist-schedule')}
                       className="text-blue-600 hover:text-blue-500 font-medium text-sm"
                     >
                       View all {completedAppointments.length} completed consultations →
@@ -2660,7 +2664,7 @@ const PharmacistDashboard = ({ navigate, appointments, onAcceptAppointment, onDe
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg shadow-lg p-6 text-white hover:shadow-xl transition-shadow cursor-pointer" onClick={() => navigate('pharmacist-schedule')}>
+            <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg shadow-lg p-6 text-white hover:shadow-xl transition-shadow cursor-pointer" onClick={() => navigate('therapist-schedule')}>
               <Calendar className="h-8 w-8 mb-3" />
               <h3 className="text-lg font-semibold mb-2">My Schedule</h3>
               <p className="text-orange-100 text-sm">View full calendar</p>
@@ -2823,7 +2827,7 @@ const PharmacistSchedule = ({ navigate }) => {
               <p className="text-gray-600">Manage your appointments and availability</p>
             </div>
             <button 
-              onClick={() => navigate('pharmacist-dashboard')}
+              onClick={() => navigate('therapist-dashboard')}
               className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -4088,8 +4092,8 @@ const AppointmentBooking = ({ navigate, isLoggedIn = true, userName = 'Guest', c
     // Navigate based on user role
     if (currentUser && currentUser.role === 'patient') {
       navigate('patient-dashboard');
-    } else if (currentUser && currentUser.role === 'pharmacist') {
-      navigate('pharmacist-dashboard');
+    } else if (currentUser && currentUser.role === 'therapist') {
+      navigate('therapist-dashboard');
     } else {
       navigate('home');
     }
@@ -4119,7 +4123,7 @@ const AppointmentBooking = ({ navigate, isLoggedIn = true, userName = 'Guest', c
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Book Your Consultation</h1>
-            <p className="mt-2 text-lg text-gray-600">Connect with experienced pharmacists for personalized medication advice</p>
+            <p className="mt-2 text-lg text-gray-600">Connect with experienced therapists for personalized mental wellness support</p>
             {isLoggedIn && currentUser && (
               <p className="mt-1 text-sm text-gray-500">Welcome back, {currentUser.name}!</p>
             )}
@@ -4128,8 +4132,8 @@ const AppointmentBooking = ({ navigate, isLoggedIn = true, userName = 'Guest', c
             onClick={() => {
               if (currentUser && currentUser.role === 'patient') {
                 navigate('patient-dashboard');
-              } else if (currentUser && currentUser.role === 'pharmacist') {
-                navigate('pharmacist-dashboard');
+              } else if (currentUser && currentUser.role === 'therapist') {
+                navigate('therapist-dashboard');
               } else {
                 navigate('home');
               }
@@ -5012,8 +5016,8 @@ const VideoConsultation = ({ navigate, currentUser }) => {
       // Navigate back to appropriate dashboard based on role
       if (currentUser?.role === 'patient') {
         navigate('patient-dashboard');
-      } else if (currentUser?.role === 'pharmacist') {
-        navigate('pharmacist-dashboard');
+      } else if (currentUser?.role === 'therapist') {
+        navigate('therapist-dashboard');
       } else {
         navigate('home');
       }
@@ -5372,7 +5376,7 @@ const ProfilePage = ({ currentUser, navigate }) => {
                   </div>
                 )}
 
-                {currentUser.role === 'pharmacist' && (
+                {currentUser.role === 'therapist' && (
                   <>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -5629,8 +5633,8 @@ const App = () => {
         {currentPage === 'login' && <LoginPage navigate={navigate} login={login} />}
         {currentPage === 'register' && <RegisterPage navigate={navigate} />}
         {currentPage === 'patient-dashboard' && <PatientDashboard navigate={navigate} appointments={appointments} currentUser={currentUser} />}
-        {currentPage === 'pharmacist-dashboard' && <PharmacistDashboard navigate={navigate} appointments={appointments} onAcceptAppointment={handleAcceptAppointment} onDeclineAppointment={handleDeclineAppointment} currentUser={currentUser} />}
-        {currentPage === 'pharmacist-schedule' && <PharmacistSchedule navigate={navigate} />}
+        {currentPage === 'therapist-dashboard' && <PharmacistDashboard navigate={navigate} appointments={appointments} onAcceptAppointment={handleAcceptAppointment} onDeclineAppointment={handleDeclineAppointment} currentUser={currentUser} />}
+        {currentPage === 'therapist-schedule' && <PharmacistSchedule navigate={navigate} />}
         {currentPage === 'admin-dashboard' && <AdminDashboard navigate={navigate} pendingPharmacistsCount={pendingPharmacists.length} />}
         {currentPage === 'pharmacist-verification' && (
           <PharmacistVerification 
@@ -5666,15 +5670,15 @@ const App = () => {
             onEndCall={() => {
               if (currentUser?.role === 'patient') {
                 navigate('patient-dashboard');
-              } else if (currentUser?.role === 'pharmacist') {
-                navigate('pharmacist-dashboard');
+              } else if (currentUser?.role === 'therapist') {
+                navigate('therapist-dashboard');
               } else {
                 navigate('home');
               }
             }}
           />
         )}
-        {currentPage === 'chat-pharmacist' && <ChatWithPharmacist navigate={navigate} />}
+        {currentPage === 'chat-therapist' && <ChatWithPharmacist navigate={navigate} />}
         {currentPage === 'request-prescription' && <RequestPrescription navigate={navigate} />}
         {currentPage === 'prescriptions' && <PrescriptionsPage navigate={navigate} />}
         {currentPage === 'profile' && <ProfilePage currentUser={currentUser} navigate={navigate} />}
